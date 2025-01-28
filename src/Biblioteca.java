@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Biblioteca {
     Usuario[] usuarios; 
     Libro[] libros;     
@@ -92,5 +94,61 @@ public class Biblioteca {
                 System.out.println(libros[i].getTitulo());
             }
         }
+    }
+    public void buscarLibro(int opcion){
+        boolean libroEncontrado= false;
+        Scanner sc = new Scanner(System.in);
+        
+        switch (opcion) {
+            case 1:
+            System.out.println("Dime el titulo que deseas buscar ");
+            String titulo = sc.nextLine();
+                for(int i= 0; i<numLibros;i++){
+                    if (titulo.equals(libros[i].getTitulo())) {
+                        System.out.println("El autor de este libro es " + libros[i].getAutor());
+                        System.out.println("La categoria de este libro es " + libros[i].getCategoria());
+                        libroEncontrado= true;
+                    }
+                    
+                }
+                if (!libroEncontrado) {
+                    System.out.println("No se encontró un libro con ese título.");
+                }
+                break;
+                case 2:
+                System.out.println("Dime el autor que deseas buscar");
+                String autor = sc.nextLine();
+                for (int i = 0; i<numLibros;i++){
+                    if (autor.equals(libros[i].getAutor())) {
+                        System.out.println("El titulo de este libro es " + libros[i].getTitulo());
+                        System.out.println("La categoria de este libro es " + libros[i].getCategoria());
+                        libroEncontrado= true;
+                    }
+                
+                }
+                if (!libroEncontrado) {
+                    System.out.println("No se encontró un libro con ese autor");
+                }
+                break;
+                case 3:
+                System.out.println("Dime la cateoria que deseas");
+                String categoria = sc.nextLine();
+                for(int i=0; i<numLibros;i++){
+                    if (categoria.equals(libros[i].getCategoria())) {
+                        System.out.println("El titulo de este libro es " + libros[i].getTitulo());
+                        System.out.println("El autor de este libro es " + libros[i].getAutor());
+                        libroEncontrado= true;
+                    }
+                }
+                if (!libroEncontrado) {
+                    System.out.println("No se encontró un libro con esa categoria.");
+                }
+                break;
+        
+            default:
+            System.out.println("Selecciona una opcion correcta ");
+                break;
+        }
+        sc.close();
     }
 }

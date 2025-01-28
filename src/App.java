@@ -9,13 +9,9 @@ public class App {
         biblioteca.registrarUsariosPrincipales("usuario", "usuario123", Rol.NORMAL); 
         biblioteca.crearLibroPrincipal("Los juegos del hambre", "Suzanne Collins", "Ciencia ficcion");
         biblioteca.crearLibroPrincipal("El hombre en busca de sentido", "Viktor Frankl", "Psicologia");
+        biblioteca.crearLibroPrincipal("El principito", "Antoine de Saint-Exupéry", "Infantil");
+        biblioteca.crearLibroPrincipal("El código Da Vinci", "Dan Brown", "Misterio");
 
-
-        // Agregar los usuarios al sistema
-        /*biblioteca.registrarUsuario(admin.getNombre(), admin.getContraseña(), admin.getRol(), admin);
-        biblioteca.registrarUsuario(usuarioNormal.getNombre(), usuarioNormal.getContraseña(), usuarioNormal.getRol(), admin);
-        biblioteca.mostrarLibrosDisponibles();*/
-        // Login
         Usuario usuarioActual = null;
         System.out.println("===== Bienvenido a la Biblioteca =====");
         while (usuarioActual == null) {
@@ -48,8 +44,9 @@ public class App {
             System.out.println("4.Prestrar Libro");
             System.out.println("5.Devolver libro");
             System.out.println("6.Mostrar libros prestados");
-            opcion = sc.nextInt();
-            sc.nextLine();
+            System.out.println("7.Buscar lirbos por titulo, autor o categoria");
+            opcion = Integer.parseInt(sc.nextLine());
+            
             switch (opcion) {
                 case 1:
                 if (usuarioActual.getRol()== Rol.ADMIN) {
@@ -95,11 +92,21 @@ public class App {
                     case 6:
                     biblioteca.mostrarLibrosDisponibles();
                     break; 
+                    case 7:
+                    System.out.println("¿Que deseas buscar?");
+                    System.out.println("1.titulo");
+                    System.out.println("2.Autor");
+                    System.out.println("3.Categoria");
+                    int opcion1;
+                    opcion1 = Integer.parseInt(sc.nextLine());
+                    sc.nextLine();
+                    biblioteca.buscarLibro(opcion1);
             
                 default:
                     break;
             }
          }while(!salir);
+         
 
         
     }
