@@ -48,6 +48,11 @@ public class App {
             System.out.println("4.Prestrar Libro");
             System.out.println("5.Devolver libro");
             System.out.println("6.Mostrar libros prestados");
+            System.out.println("8.Agregar Libro");
+            System.out.println("9.eliminar Libro");
+            System.out.println("10.Listar libros mas prestados"); 
+            System.out.println("11.Mostrar numero de prestamos totales y activos"); 
+            System.out.println("12.mostrar usuario con mas prestamos activos"); 
             opcion = sc.nextInt();
             sc.nextLine();
             switch (opcion) {
@@ -93,8 +98,37 @@ public class App {
                     biblioteca.devolverLibrosPrestados(titulo2);  
                     break;
                     case 6:
-                    biblioteca.mostrarLibrosDisponibles();
+                    biblioteca.librosPrestados();
                     break; 
+              
+                    case 8:
+                    System.out.println("Dime el título del libro:");
+                    String titul = sc.nextLine();  // Leer el título del libro
+                
+                    System.out.println("Dime el autor del libro:");
+                    String autor = sc.nextLine();  // Leer el autor del libro
+                
+                    System.out.println("Dime la categoría del libro:");
+                    String categoria = sc.nextLine();  // Leer la categoría del libro
+                
+                    // Llamada al método agregarLibro, pasándole los parámetros correspondientes
+                    biblioteca.agregarLibro(titul, autor, categoria, usuarioActual);  // Asegúrate de que los parámetros estén bien
+                
+                    break;
+                    case 9:
+                    System.out.println("Dime el título del libro que deseas eliminar:");
+                    String titul2 = sc.nextLine();  // Leer el título del libro
+
+                    biblioteca.eliminarLibro(titul2, usuarioActual);
+                    break;
+                    case 10:
+                    biblioteca.listarLibrosMasPrestados();
+                    case 11:
+                    biblioteca.mostrarNumeroPrestamos();
+                    case 12:
+                    biblioteca.usuarioConMasPrestamos();
+
+                   
             
                 default:
                     break;
