@@ -11,7 +11,7 @@ public class App {
         biblioteca.crearLibroPrincipal("El hombre en busca de sentido", "Viktor Frankl", "Psicologia");
         biblioteca.crearLibroPrincipal("El principito", "Antoine de Saint-Exupéry", "Infantil");
         biblioteca.crearLibroPrincipal("El código Da Vinci", "Dan Brown", "Misterio");
-
+        // Inicio de sesión
         Usuario usuarioActual = null;
         System.out.println("===== Bienvenido a la Biblioteca =====");
         while (usuarioActual == null) {
@@ -33,20 +33,27 @@ public class App {
         }
 
         System.out.println("Bienvenido, " + usuarioActual.getNombre() + " (Rol: " + usuarioActual.getRol() + ")");
-        //menu temporal y ahyq ue realizar dos menus uno para usuarios normales y otros para usuarios
+        //menú de opciones
          boolean salir = false;
          int opcion;
          do{
-            System.out.println("Bienvenido seleccione una opcion");
+         if (usuarioActual.getRol()== Rol.ADMIN) {
+            System.out.println("Bienvenido administrador");
             System.out.println("1.Añadir usuario");
-            System.out.println("2.Moatrar Usuarios");
-            System.out.println("3.Mostar libros disponibles");
-            System.out.println("4.Prestrar Libro");
-            System.out.println("5.Devolver libro");
+            System.out.println("2.Mostrar Usuarios");
+            System.out.println("3.Mostrar libros disponibles");
+            System.out.println("4.Prestar Libro");
+            System.out.println("5.Devolver libros prestados");
             System.out.println("6.Mostrar libros prestados");
-            System.out.println("7.Buscar lirbos por titulo, autor o categoria");
-            opcion = Integer.parseInt(sc.nextLine());
-            
+            System.out.println("7.Buscar libros por titulo autor y categoria");
+            System.out.println("8.agregar libros");
+            System.out.println("9.Eliminar libros existentes");
+            System.out.println("10.Mostrar numeros de prestamos totales y activos");
+            System.out.println("11.Listar los libros mas prestados");
+            System.out.println("12.Mostar que usuario tiene mas prestamos activos");
+            System.out.println("0.Salir");
+            opcion = sc.nextInt();
+            sc.nextLine();
             switch (opcion) {
                 case 1:
                 if (usuarioActual.getRol()== Rol.ADMIN) {
@@ -90,23 +97,123 @@ public class App {
                     biblioteca.devolverLibrosPrestados(titulo2);  
                     break;
                     case 6:
-                    biblioteca.mostrarLibrosDisponibles();
+                    biblioteca.librosPrestados();
                     break; 
                     case 7:
-                    System.out.println("¿Que deseas buscar?");
+                    System.out.println("¿Como deseas buscar el libro?");
                     System.out.println("1.titulo");
                     System.out.println("2.Autor");
                     System.out.println("3.Categoria");
-                    int opcion1;
-                    opcion1 = Integer.parseInt(sc.nextLine());
+                    int opcion1=sc.nextInt();
                     sc.nextLine();
-                    biblioteca.buscarLibro(opcion1);
+                    switch (opcion1) {
+                        case 1:
+                        System.out.println("Dime el titulo del libro que deseas buscar");
+                        String titulo1 = sc.nextLine();
+                            biblioteca.buscarPorTitulo(titulo1);
+                            break;
+                            case 2:
+                            System.out.println("Dime el autor del libro que deseas buscar");
+                            String autor = sc.nextLine();
+                            biblioteca.buscarPorAutor(autor);
+                            break;
+                            case 3:
+                            System.out.println("Dime la categoria del libro que deseas buscar");
+                            String categoria = sc.nextLine();
+                            biblioteca.buscarPorCategoria(categoria);
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                    break;
+                    case 8:
+
+                    break;
+                    case 9:
+
+                    break;
+                    case 10:
+
+                    break;
+                    case 11:
+
+                    break;
+                    case 12:
+
+                    break;
+                    case 13:
+
+                    break;
+                    case 0:
+                    salir=true;
+                    break;
             
                 default:
                     break;
             }
-         }while(!salir);
          
+        }else if (usuarioActual.getRol()==Rol.NORMAL) {
+            //menu de opciones para usuarios normales
+            System.out.println("Biemvenido usuario");
+            System.out.println("1.Buscar libors por titulo, autor o categoria");
+            System.out.println("2.Mostrar todos los libros disponibles");
+            System.out.println("3.Realizar prestamos de libros");
+            System.out.println("4.Devolver libros prestados");
+            System.out.println("5.Salir");
+            opcion= sc.nextInt();
+            sc.nextLine();
+            switch (opcion) {
+                case 1:
+                System.out.println("¿Como deseas buscar el libro?");
+                    System.out.println("1.titulo");
+                    System.out.println("2.Autor");
+                    System.out.println("3.Categoria");
+                    int opcion1=sc.nextInt();
+                    switch (opcion1) {
+                        case 1:
+                        System.out.println("Dime el titulo del libro que deseas buscar");
+                        String titulo1 = sc.nextLine();
+                            biblioteca.buscarPorTitulo(titulo1);
+                            break;
+                            case 2:
+                            System.out.println("Dime el autor del libro que deseas buscar");
+                            String autor = sc.nextLine();
+                            biblioteca.buscarPorAutor(autor);
+                            break;
+                            case 3:
+                            System.out.println("Dime la categoria del libro que deseas buscar");
+                            String categoria = sc.nextLine();
+                            biblioteca.buscarPorCategoria(categoria);
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                    break;
+                    case 2:
+                    biblioteca.mostrarLibrosDisponibles();
+                    break;
+                    case 3:
+                    System.out.println("Dime el nombre del libro que deseas prestar");
+                    String titulo = sc.nextLine();
+                    biblioteca.realizarPrestamo(titulo);
+                    break;
+                    case 4:
+                    System.out.println("Dime el nombre del libro que deseas devolver");
+                    String titulo2 = sc.nextLine(); 
+                    biblioteca.devolverLibrosPrestados(titulo2);
+                    break;
+                    case 0:
+                    salir = true;
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+    }while(!salir);
+    sc.close();
 
         
     }
