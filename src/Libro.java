@@ -3,7 +3,7 @@ public class Libro {
     private String autor;
     private String categoria;
     private boolean prestado;
-    private int vecesPrestado;  // Nueva variable para contar los préstamos
+    private int vecesPrestado; // Nueva variable para contar los préstamos
 
     public Libro(String titulo, String autor, String categoria) {
         this.titulo = titulo;
@@ -25,18 +25,22 @@ public class Libro {
         return this.categoria;
     }
 
-    public boolean isPrestado() { 
+    public boolean getPrestado() {
         return this.prestado;
     }
 
-    public void setPrestado(boolean prestado) { 
+    public boolean isPrestado() {
+        return this.prestado;
+    }
+
+    public void setPrestado(boolean prestado) {
         this.prestado = prestado;
         if (prestado) {
-            this.vecesPrestado++;  // Aumenta el contador cuando se presta el libro
+            this.vecesPrestado++; // Aumenta el contador cuando se presta el libro
         }
     }
 
-    public int getVecesPrestado() { 
+    public int getVecesPrestado() {
         return this.vecesPrestado;
     }
 }
