@@ -3,7 +3,11 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) throws Exception {
         Scanner sc = new Scanner(System.in);
-
+    /**
+     * @author Mario López Gastón
+     * @autor Jose Maria Trinidaz Jimenez
+     * @version 1.0
+     */
         // Inicialización de la biblioteca y creación de datos de prueba
         Biblioteca biblioteca = new Biblioteca();
         biblioteca.registrarUsariosPrincipales("admin", "admin123", Rol.ADMIN);
